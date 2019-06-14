@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "mongodb": "^3.2.4",
     "mysql": "^2.17.1",

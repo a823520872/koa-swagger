@@ -6,12 +6,12 @@ const Category = sequelize.define(
     'category',
     {
         id: {
-            type: Sequelize.UUID,
+            type: Sequelize.INTEGER,
             allowNull: false,
             unique: true,
-            primaryKey: true
-            // autoIncrement: true
-            // defaultValue: 1
+            primaryKey: true,
+            autoIncrement: true,
+            defaultValue: 1
         },
         name: {
             type: Sequelize.STRING,
