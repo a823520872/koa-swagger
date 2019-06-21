@@ -9,9 +9,9 @@ const Category = sequelize.define(
             type: Sequelize.INTEGER,
             allowNull: false,
             unique: true,
-            primaryKey: true,
-            autoIncrement: true,
-            defaultValue: 1
+            primaryKey: true
+            // autoIncrement: true,
+            // defaultValue: 1
         },
         name: {
             type: Sequelize.STRING,

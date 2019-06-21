@@ -9,6 +9,6 @@ router.get('/:id', CategoryController.show)
 
 router.post('/update', CategoryController.update)
 
-router.post('/delete', CategoryController.delete)
+router.get('/delete', CategoryController.del)
 
 module.exports = router

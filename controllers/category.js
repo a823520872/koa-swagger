@@ -7,15 +7,16 @@ class CategoryController extends CommonController {
             const result = await CategoryService.findAll(ctx.query)
             ctx.body = super.success(result)
         } catch (error) {
-            ctx.body = super.fail(result)
+            ctx.body = super.fail(error)
         }
     }
     async create(ctx) {
         try {
+            console.log(ctx.request.header)
             const result = await CategoryService.create(ctx.request.body.name)
             ctx.body = super.success(result)
         } catch (error) {
-            ctx.body = super.fail(result)
+            ctx.body = super.fail(error)
         }
     }
     async show(ctx) {
@@ -23,32 +24,37 @@ class CategoryController extends CommonController {
             const result = await CategoryService.findById(ctx.params.id)
             ctx.body = super.success(result)
         } catch (error) {
-            ctx.body = super.fail(result)
+            ctx.body = super.fail(error)
         }
     }
     async update(ctx) {
         try {
             const { id, ...params } = ctx.request.body
-            const result = await CategoryController.update(params, { id })
-            ctx.body = super.success(result)
+            const result = await CategoryService.findById(id)
+            if (result) {
+                await CategoryService.update(params, { id })
+                ctx.body = super.success({})
+            } else {
+                ctx.body = super.fail({}, '数据不存在')
+            }
         } catch (error) {
-            ctx.body = super.fail(result)
+            ctx.body = super.fail(error)
         }
     }
-    async show(ctx) {
+    async del(ctx) {
+        console.log(1)
         try {
-            const result = await CategoryService.findById(ctx.params.id)
-            ctx.body = super.success(result)
+            const id = ctx.query.id
+            console.log(id)
+            const result = await CategoryService.findById(id)
+            if (result) {
+                await CategoryService.destroy({ id })
+                ctx.body = super.success({})
+            } else {
+                ctx.body = super.fail({}, '数据不存在')
+            }
         } catch (error) {
-            ctx.body = super.fail(result)
-        }
-    }
-    async delete(ctx) {
-        try {
-            const result = await CategoryService.findById(ctx.request.body.id)
-            ctx.body = super.success(result)
-        } catch (error) {
-            ctx.body = super.fail(result)
+            ctx.body = super.fail(error)
         }
     }
 }

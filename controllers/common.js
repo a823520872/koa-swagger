@@ -2,13 +2,15 @@ class CommonController {
     success(res) {
         return {
             code: 1,
-            data: res
+            data: res,
+            msg: '请求成功'
         }
     }
-    fail(res) {
+    fail(res = {}, msg) {
         return {
             code: 0,
-            data: res
+            data: res,
+            msg
         }
     }
 }
