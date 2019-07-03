@@ -6,11 +6,11 @@ class CommonController {
             msg: '请求成功'
         }
     }
-    fail(res = {}, msg) {
+    fail(msg) {
         return {
             code: 0,
-            data: res,
-            msg
+            data: null,
+            msg: msg.toString() || msg
         }
     }
 }

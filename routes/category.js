@@ -5,10 +5,10 @@ router.get('/', CategoryController.index)
 
 router.post('/add', CategoryController.create)
 
-router.get('/:id', CategoryController.show)
-
 router.post('/update', CategoryController.update)
 
-router.get('/delete', CategoryController.del)
+router.get('/del', CategoryController.del)
+
+router.get('/:id', CategoryController.show)
 
 module.exports = router

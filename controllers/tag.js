@@ -1,10 +1,10 @@
 const CommonController = require('./common')
-const CategoryService = require('../services/category')
+const TagService = require('../services/tag')
 
-class CategoryController extends CommonController {
+class TagController extends CommonController {
     async index(ctx) {
         try {
-            const result = await CategoryService.findAll(ctx.query)
+            const result = await TagService.findAll(ctx.query)
             ctx.body = super.success(result)
         } catch (error) {
             ctx.body = super.fail(error)
@@ -12,7 +12,7 @@ class CategoryController extends CommonController {
     }
     async create(ctx) {
         try {
-            const result = await CategoryService.create(ctx.request.body.name)
+            const result = await TagService.create(ctx.request.body.name)
             ctx.body = super.success(result)
         } catch (error) {
             ctx.body = super.fail(error)
@@ -20,7 +20,7 @@ class CategoryController extends CommonController {
     }
     async show(ctx) {
         try {
-            const result = await CategoryService.findById(ctx.params.id)
+            const result = await TagService.findById(ctx.params.id)
             ctx.body = super.success(result)
         } catch (error) {
             ctx.body = super.fail(error)
@@ -29,9 +29,9 @@ class CategoryController extends CommonController {
     async update(ctx) {
         try {
             const { id, ...params } = ctx.request.body
-            const result = await CategoryService.findById(id)
+            const result = await TagService.findById(id)
             if (result) {
-                await CategoryService.update(params, { id })
+                await TagService.update(params, { id })
                 ctx.body = super.success(null)
             } else {
                 ctx.body = super.fail('数据不存在')
@@ -43,9 +43,9 @@ class CategoryController extends CommonController {
     async del(ctx) {
         try {
             const id = ctx.query.id
-            const result = await CategoryService.findById(id)
+            const result = await TagService.findById(id)
             if (result) {
-                await CategoryService.destroy({ id })
+                await TagService.destroy({ id })
                 ctx.body = super.success(null)
             } else {
                 ctx.body = super.fail('数据不存在')
@@ -56,4 +56,4 @@ class CategoryController extends CommonController {
     }
 }
 
-module.exports = new CategoryController()
+module.exports = new TagController()

@@ -1,6 +1,7 @@
 const route = require('koa-router')()
-// const home = require('./home.js')
-const category = require('./category.js')
+// const home = require('./home')
+const category = require('./category')
+const tag = require('./tag')
 
 route.get('/', async ctx => {
     let html = `
@@ -22,5 +23,6 @@ route.post('/', async ctx => {
     ctx.body = postData
 })
 route.use('/category', category.routes()).use(category.allowedMethods())
+route.use('/tag', tag.routes()).use(tag.allowedMethods())
 
 module.exports = route
